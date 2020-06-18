@@ -15,17 +15,16 @@ namespace ServiceLayer
         public DiamondService(IRepository<DbModels.Diamond> diamondRepository)
         {
             if (diamondRepository == null) throw new ArgumentException("Invalid argument diamondRepository!");
-
             _diamondRepository = diamondRepository;
         }
 
         public void AddDiamond(Diamond diamond)
         {
             /* NOTE: 
-             * Convert Domain Model into DBModel and pass it on to the persistence layer. Eg. AutoMapper could be used
-             * All logic and if validataions any can be carried out here; 
+             * 1. Convert Domain Model into DBModel and pass it on to the persistence layer. Eg. AutoMapper could be used here
+             * 2. All logic and if validataions any can be carried out here; 
+             * 3. FOR Simplicity; mapping Business Model to DB Model manually
              */
-            //FOR Simplicity; being mapped manually.
             var newDiamond = new DbModels.Diamond
             {
                 Id = Guid.NewGuid(),
