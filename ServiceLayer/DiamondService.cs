@@ -28,7 +28,7 @@ namespace ServiceLayer
              */
             var newDiamond = new DatabaseDiamond
             {
-                Id = Guid.NewGuid(),
+                Id = 10,
                 Name = diamond.Name,
                 Country = "India",
                 CreatedAt = DateTime.UtcNow

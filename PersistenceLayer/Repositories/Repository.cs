@@ -23,7 +23,7 @@ namespace PersistenceLayer.Repositories
         {
             return entities.AsEnumerable();
         }
-        public async Task<T> GetById(Guid id)
+        public async Task<T> GetById(int id)
         {
             return await entities.SingleOrDefaultAsync(s => s.Id == id);
         }
@@ -39,10 +39,8 @@ namespace PersistenceLayer.Repositories
             if (entity == null) throw new ArgumentNullException("entity");
             await context.SaveChangesAsync();
         }
-        public async Task Delete(Guid id)
+        public async Task Delete(int id)
         {
-            if (id == null) throw new ArgumentNullException("entity");
-
             T entity = await entities.SingleOrDefaultAsync(s => s.Id == id);
             entities.Remove(entity);
             await context.SaveChangesAsync();

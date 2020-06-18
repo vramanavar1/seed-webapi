@@ -32,7 +32,7 @@ namespace SeedWebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<DatabaseContext>(opts =>
-               opts.UseInMemoryDatabase("database"));
+               opts.UseInMemoryDatabase("DiamondsDB"));
             services.AddScoped<DatabaseContext>();
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<IDiamondService, DiamondService>();
@@ -60,13 +60,14 @@ namespace SeedWebApi
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, DatabaseContext databaseContext)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
 
+            //databaseContext.Database.Migrate();
             app.UseMvc();
         }
     }
