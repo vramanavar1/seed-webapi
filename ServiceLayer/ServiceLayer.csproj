@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PersistenceLayer.Contracts\PersistenceLayer.Contracts.csproj" />
+    <ProjectReference Include="..\PersistenceLayer\PersistenceLayer.csproj" />
+    <ProjectReference Include="..\ServiceLayer.Contracts\ServiceLayer.Contracts.csproj" />
+  </ItemGroup>
+
+</Project>
