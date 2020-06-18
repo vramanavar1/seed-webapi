@@ -1,11 +1,12 @@
 ﻿using ServiceLayer.Contracts.DomainModels;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ServiceLayer.Contracts
 {
     public interface IDiamondService
     {
-        void AddDiamond(Diamond diamond);
-        IEnumerable<Diamond> GetDiamonds();
+        Task AddDiamond(Diamond diamond);
+        Task<IEnumerable<Diamond>> GetDiamonds();
     }
 }

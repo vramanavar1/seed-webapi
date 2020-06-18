@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using PersistenceLayer.Contracts.Models;
+using System.Threading.Tasks;
 
 namespace ServiceLayer
 {
@@ -18,7 +19,7 @@ namespace ServiceLayer
             _diamondRepository = diamondRepository;
         }
 
-        public void AddDiamond(Diamond diamond)
+        public async Task AddDiamond(Diamond diamond)
         {
             /* NOTE: 
              * 1. Convert Domain Model into DBModel and pass it on to the persistence layer. Eg. AutoMapper could be used here
@@ -33,12 +34,12 @@ namespace ServiceLayer
                 CreatedAt = DateTime.UtcNow
             };
 
-            _diamondRepository.Insert(newDiamond);
+            await _diamondRepository.Insert(newDiamond);
         }
 
-        public IEnumerable<Diamond> GetDiamonds()
+        public async Task<IEnumerable<Diamond>> GetDiamonds()
         {
-            var diamonds = _diamondRepository.GetAll().ToList();
+            var diamonds = (await _diamondRepository.GetAll()).ToList();
             return diamonds.Select(t => new Diamond { Name = t.Name, Country = t.Country });
         }
     }

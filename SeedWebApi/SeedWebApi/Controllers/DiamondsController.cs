@@ -7,36 +7,34 @@ using System.Collections.Generic;
 using System.Linq;
 using DM = ServiceLayer.Contracts.DomainModels;
 using SeedWebApi.ViewModels;
+using System.Threading.Tasks;
 
 namespace SeedWebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class DiamondsController : ControllerBase
+    public class DiamondsController : BaseController
     {
         private IDiamondService _diamondService;
-        private IHostingEnvironment _hostingEnvironment;
-
         private readonly ILogger<DiamondsController> _logger;
 
-        public DiamondsController(ILogger<DiamondsController> logger, IHostingEnvironment hostingEnvironment, IDiamondService diamondService)
+        public DiamondsController(ILogger<DiamondsController> logger, IHostingEnvironment hostingEnvironment, IDiamondService diamondService): base(hostingEnvironment)
         {
             if (diamondService == null) throw new ArgumentException("Invalid argument DiamondService");
             if (logger == null) throw new ArgumentException("Invalid argument Logger");
-            if (hostingEnvironment == null) throw new ArgumentException("Invalid argument HostingEnvironment");
 
             _diamondService = diamondService;
             _logger = logger;
-            _hostingEnvironment = hostingEnvironment;
         }
 
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<ViewModelDiamond>> Get()
+        public async Task<IActionResult> Get()
         {
             _logger.LogDebug($"DEBUG Message :=> {_hostingEnvironment.EnvironmentName}");
             _logger.LogInformation($"INFORMATION Message :=> {_hostingEnvironment.EnvironmentName}");
-            return _diamondService.GetDiamonds().Select(x => new ViewModelDiamond { Name = x.Name, Country = x.Country }).ToList();
+
+            return await ExecuteAsync(() => _diamondService.GetDiamonds(), "");
         }
 
         // GET api/values/5
@@ -48,7 +46,7 @@ namespace SeedWebApi.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody] ViewModelDiamond diamond)
+        public async Task Post([FromBody] ViewModelDiamond diamond)
         {
             var newDiamond = new DM.Diamond
             {
@@ -56,7 +54,7 @@ namespace SeedWebApi.Controllers
                 Country = diamond.Country
             };
 
-            _diamondService.AddDiamond(newDiamond);
+            await _diamondService.AddDiamond(newDiamond);
         }
 
         // PUT api/values/5

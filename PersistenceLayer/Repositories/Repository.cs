@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace PersistenceLayer.Repositories
 {
@@ -18,33 +19,33 @@ namespace PersistenceLayer.Repositories
             this.context = context;
             entities = context.Set<T>();
         }
-        public IEnumerable<T> GetAll()
+        public async Task<IEnumerable<T>> GetAll()
         {
             return entities.AsEnumerable();
         }
-        public T GetById(Guid id)
+        public async Task<T> GetById(Guid id)
         {
-            return entities.SingleOrDefault(s => s.Id == id);
+            return await entities.SingleOrDefaultAsync(s => s.Id == id);
         }
-        public void Insert(T entity)
+        public async Task Insert(T entity)
         {
             if (entity == null) throw new ArgumentNullException("entity");
 
             entities.Add(entity);
-            context.SaveChanges();
+            await context.SaveChangesAsync();
         }
-        public void Update(T entity)
+        public async Task Update(T entity)
         {
             if (entity == null) throw new ArgumentNullException("entity");
-            context.SaveChanges();
+            await context.SaveChangesAsync();
         }
-        public void Delete(Guid id)
+        public async Task Delete(Guid id)
         {
             if (id == null) throw new ArgumentNullException("entity");
 
-            T entity = entities.SingleOrDefault(s => s.Id == id);
+            T entity = await entities.SingleOrDefaultAsync(s => s.Id == id);
             entities.Remove(entity);
-            context.SaveChanges();
+            await context.SaveChangesAsync();
         }
     }
 }
