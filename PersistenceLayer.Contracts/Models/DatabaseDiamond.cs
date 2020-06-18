@@ -2,7 +2,7 @@
 
 namespace PersistenceLayer.Contracts.Models
 {
-    public class Diamond : BaseEntity
+    public class DatabaseDiamond : BaseEntity
     {
         public String Name { get; set; }
         public String Country { get; set; }

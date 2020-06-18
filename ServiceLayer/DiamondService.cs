@@ -4,15 +4,15 @@ using ServiceLayer.Contracts.DomainModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using DbModels = PersistenceLayer.Contracts.Models;
+using PersistenceLayer.Contracts.Models;
 
 namespace ServiceLayer
 {
     public class DiamondService : IDiamondService
     {
-        private IRepository<DbModels.Diamond> _diamondRepository;
+        private IRepository<DatabaseDiamond> _diamondRepository;
 
-        public DiamondService(IRepository<DbModels.Diamond> diamondRepository)
+        public DiamondService(IRepository<DatabaseDiamond> diamondRepository)
         {
             if (diamondRepository == null) throw new ArgumentException("Invalid argument diamondRepository!");
             _diamondRepository = diamondRepository;
@@ -25,7 +25,7 @@ namespace ServiceLayer
              * 2. All logic and if validataions any can be carried out here; 
              * 3. FOR Simplicity; mapping Business Model to DB Model manually
              */
-            var newDiamond = new DbModels.Diamond
+            var newDiamond = new DatabaseDiamond
             {
                 Id = Guid.NewGuid(),
                 Name = diamond.Name,

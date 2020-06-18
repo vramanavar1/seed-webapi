@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using DM = ServiceLayer.Contracts.DomainModels;
-using VM = SeedWebApi.ViewModels;
+using SeedWebApi.ViewModels;
 
 namespace SeedWebApi.Controllers
 {
@@ -32,11 +32,11 @@ namespace SeedWebApi.Controllers
 
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<VM.Diamond>> Get()
+        public ActionResult<IEnumerable<ViewModelDiamond>> Get()
         {
             _logger.LogDebug($"DEBUG Message :=> {_hostingEnvironment.EnvironmentName}");
             _logger.LogInformation($"INFORMATION Message :=> {_hostingEnvironment.EnvironmentName}");
-            return _diamondService.GetDiamonds().Select(x => new VM.Diamond { Name = x.Name, Country = x.Country }).ToList();
+            return _diamondService.GetDiamonds().Select(x => new ViewModelDiamond { Name = x.Name, Country = x.Country }).ToList();
         }
 
         // GET api/values/5
@@ -48,7 +48,7 @@ namespace SeedWebApi.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody] VM.Diamond diamond)
+        public void Post([FromBody] ViewModelDiamond diamond)
         {
             var newDiamond = new DM.Diamond
             {

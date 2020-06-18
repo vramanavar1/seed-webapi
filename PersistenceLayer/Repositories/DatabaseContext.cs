@@ -5,7 +5,7 @@ namespace PersistenceLayer.Repositories
 {
     public class DatabaseContext : DbContext
     {
-        public DbSet<Diamond> diamonds { get; set; }
+        public DbSet<DatabaseDiamond> diamonds { get; set; }
 
         public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
         {
