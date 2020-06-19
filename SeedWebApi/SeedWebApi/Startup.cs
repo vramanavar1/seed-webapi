@@ -1,12 +1,14 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json.Serialization;
 using PersistenceLayer.Contracts;
 using PersistenceLayer.Repositories;
+using SeedWebApi.Filters;
 using ServiceLayer;
 using ServiceLayer.Contracts;
 using System;
@@ -37,15 +39,15 @@ namespace SeedWebApi
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<IDiamondService, DiamondService>();
 
+            services.AddHealthChecks();
+
             services.AddMvc(config =>
             {
                 // Add XML Content Negotiation
                 config.RespectBrowserAcceptHeader = true;
-                //config.InputFormatters.Add(new XmlSerializerInputFormatter());
-                //config.OutputFormatters.Add(new XmlSerializerOutputFormatter());
 
                 // Add Global Error Handling Filter
-                //config.Filters.Add(typeof(GlobalExceptionFilter));
+                config.Filters.Add(typeof(GlobalExceptionFilter));
             })
             .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
             .AddJsonOptions(opts =>
@@ -53,7 +55,6 @@ namespace SeedWebApi
                 // Force  Camelcase to JSON serialization
                 opts.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             }).AddControllersAsServices();
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -64,7 +65,12 @@ namespace SeedWebApi
                 app.UseDeveloperExceptionPage();
             }
 
-            //databaseContext.Database.Migrate();
+            /* 
+             * NOTE: Here's a very basic health check. This can be further extended to validate the health of downstream services
+             * and provide sophisticated health status report based on custom
+             */ 
+            app.UseHealthChecks("/_healthz");
+
             app.UseMvc();
         }
     }

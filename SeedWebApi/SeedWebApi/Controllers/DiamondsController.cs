@@ -27,7 +27,7 @@ namespace SeedWebApi.Controllers
             _logger = logger;
         }
 
-        // GET api/values
+        // GET api/diamonds
         [HttpGet]
         public async Task<IActionResult> Get()
         {
@@ -37,14 +37,14 @@ namespace SeedWebApi.Controllers
             return await ExecuteAsync(() => _diamondService.GetDiamonds(), "");
         }
 
-        // GET api/values/5
+        // GET api/diamonds/5
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
             return await ExecuteAsync(() => _diamondService.GetDiamond(id), "");
         }
 
-        // POST api/values
+        // POST api/diamonds
         [HttpPost]
         public async Task Post([FromBody] ViewModelDiamond diamond)
         {
@@ -57,7 +57,7 @@ namespace SeedWebApi.Controllers
             await _diamondService.AddDiamond(newDiamond);
         }
 
-        // PUT api/values/5
+        // PUT api/diamonds/5
         [HttpPut("{id}")]
         public async Task Put(int id, [FromBody] ViewModelDiamond diamond)
         {
@@ -70,7 +70,7 @@ namespace SeedWebApi.Controllers
             await _diamondService.UpdateDiamond(domainDiamond);
         }
 
-        // DELETE api/values/5
+        // DELETE api/diamonds/5
         [HttpDelete("{id}")]
         public async Task Delete(int id)
         {
