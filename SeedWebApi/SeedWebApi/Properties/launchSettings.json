@@ -14,7 +14,8 @@
       "launchBrowser": true,
       "launchUrl": "api/diamonds",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "DATABASE_CONNECTION_STRING": "Data Source=diamonds.db"
       }
     },
     "SeedWebApi": {
@@ -22,7 +23,8 @@
       "launchBrowser": true,
       "launchUrl": "api/values",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "DATABASE_CONNECTION_STRING": "Data Source=diamonds.db"
       },
       "applicationUrl": "http://localhost:5000"
     },
@@ -32,7 +34,8 @@
       "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/api/diamonds",
       "httpPort": 52043,
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "DATABASE_CONNECTION_STRING": "Data Source=diamonds.db"
       }
     }
   }

@@ -9,6 +9,7 @@ using PersistenceLayer.Contracts;
 using PersistenceLayer.Repositories;
 using ServiceLayer;
 using ServiceLayer.Contracts;
+using System;
 
 namespace SeedWebApi
 {
@@ -31,14 +32,10 @@ namespace SeedWebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<DatabaseContext>(opts =>
-               opts.UseInMemoryDatabase("DiamondsDB"));
-            services.AddScoped<DatabaseContext>();
+            var connectionString = Configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<DatabaseContext>(options => options.UseSqlite(connectionString), ServiceLifetime.Scoped);
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<IDiamondService, DiamondService>();
-
-            //services.AddControllers();
-            //services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddMvc(config =>
             {

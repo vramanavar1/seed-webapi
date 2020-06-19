@@ -6,19 +6,20 @@ namespace PersistenceLayer.Repositories
 {
     public class DatabaseContext : DbContext
     {
-        public DbSet<DatabaseDiamond> diamonds { get; set; }
+        public virtual DbSet<DatabaseDiamond> diamonds { get; set; }
+        public virtual DbSet<DatabaseRetailer> retailers { get; set; }
 
-        public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
+        public DatabaseContext(string connectionString) : this(new DbContextOptionsBuilder<DatabaseContext>().UseSqlite(connectionString).Options)
+        {
+        }
+
+        public DatabaseContext(DbContextOptions options) : base(options)
         {
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //if (!optionsBuilder.IsConfigured)
-            //{
-            //    optionsBuilder.ConfigureWarnings(warnings => warnings.Throw(RelationalEventId.QueryClientEvaluationWarning));
-            //    _ = optionsBuilder.UseInMemoryDatabase("DiamondsDB");
-            //}
+            optionsBuilder.ConfigureWarnings(warnings => warnings.Throw(RelationalEventId.QueryClientEvaluationWarning));
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

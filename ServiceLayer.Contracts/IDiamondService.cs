@@ -8,5 +8,8 @@ namespace ServiceLayer.Contracts
     {
         Task AddDiamond(Diamond diamond);
         Task<IEnumerable<Diamond>> GetDiamonds();
+        Task UpdateDiamond(Diamond diamond);
+        Task DeleteDiamond(int Id);
+        Task<Diamond> GetDiamond(int Id);
     }
 }

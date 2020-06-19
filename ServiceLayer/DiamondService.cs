@@ -28,7 +28,6 @@ namespace ServiceLayer
              */
             var newDiamond = new DatabaseDiamond
             {
-                Id = 10,
                 Name = diamond.Name,
                 Country = "India",
                 CreatedAt = DateTime.UtcNow
@@ -37,10 +36,35 @@ namespace ServiceLayer
             await _diamondRepository.Insert(newDiamond);
         }
 
+        public async Task DeleteDiamond(int Id)
+        {
+            await _diamondRepository.Delete(Id);
+        }
+
+        public async Task<Diamond> GetDiamond(int Id)
+        {
+            var dbDiamond = await _diamondRepository.GetById(Id);
+            return new Diamond
+            {
+                Id = dbDiamond.Id,
+                Name = dbDiamond.Name,
+                Country = dbDiamond.Country
+            };
+        }
+
         public async Task<IEnumerable<Diamond>> GetDiamonds()
         {
             var diamonds = (await _diamondRepository.GetAll()).ToList();
-            return diamonds.Select(t => new Diamond { Name = t.Name, Country = t.Country });
+            return diamonds.Select(t => new Diamond { Id = t.Id, Name = t.Name, Country = t.Country });
+        }
+
+        public async Task UpdateDiamond(Diamond diamond)
+        {
+            var diamondToUpdate = await _diamondRepository.GetById(diamond.Id);
+            diamondToUpdate.Name = diamond.Name;
+            diamondToUpdate.Country = diamond.Country;
+
+            await _diamondRepository.Update(diamondToUpdate);
         }
     }
 }

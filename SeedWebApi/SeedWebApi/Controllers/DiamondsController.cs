@@ -39,9 +39,9 @@ namespace SeedWebApi.Controllers
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
-            return "value";
+            return await ExecuteAsync(() => _diamondService.GetDiamond(id), "");
         }
 
         // POST api/values
@@ -59,14 +59,22 @@ namespace SeedWebApi.Controllers
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async Task Put(int id, [FromBody] ViewModelDiamond diamond)
         {
+            var domainDiamond = new DM.Diamond
+            {
+                Id = id,
+                Name = diamond.Name,
+                Country = diamond.Country
+            };
+            await _diamondService.UpdateDiamond(domainDiamond);
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task Delete(int id)
         {
+            await _diamondService.DeleteDiamond(id);
         }
     }
 }
