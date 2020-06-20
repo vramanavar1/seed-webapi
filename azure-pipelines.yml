@@ -15,9 +15,9 @@ steps:
   displayName: Build and Push SeedWebApi Image
   inputs:
     containerRegistry: 'vramanavarDockerRegistry'
-    repository: 'vramanavar/seedwebapi'
+    repository: 'seedwebapi'
     command: 'buildAndPush'
-    Dockerfile: 'src/SeedWebApi/Dockerfile'
+    Dockerfile: 'SeedWebApi/SeedWebApi/Dockerfile'
     tags: |
       latest
 - task: KubernetesManifest@0
