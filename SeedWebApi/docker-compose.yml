@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  seedweb.api:
+    image: ${DOCKER_REGISTRY}seedwebapi
+    build:
+      context: .
+      dockerfile: src\SeedWebApi\Dockerfile
