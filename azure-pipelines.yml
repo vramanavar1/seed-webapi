@@ -9,8 +9,8 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
-- script: |
-  dotnet restore
-  dotnet build ./SeedWebApi/SeedWebApi/ --configuration $(buildConfiguration)
-  dotnet publish ./SeedWebApi/SeedWebApi/ --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)
-  
+steps: 
+  - script:
+    dotnet restore
+    dotnet build ./SeedWebApi/SeedWebApi/ --configuration $(buildConfiguration)
+    dotnet publish ./SeedWebApi/SeedWebApi/ --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)
