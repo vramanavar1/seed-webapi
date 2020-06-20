@@ -10,7 +10,7 @@ trigger:
 
 variables:
   dockerRegistryServiceConnection: 'vramanavarDockerRegistry'
-  dockerfilePath: '$(Build.SourcesDirectory)/SeedWebApi/Dockerfile'
+  dockerfilePath: '$(Build.SourcesDirectory)/SeedWebApi/SeedWebApi/Dockerfile'
   imageRepository: 'seedwebapi'
 
 pool:
