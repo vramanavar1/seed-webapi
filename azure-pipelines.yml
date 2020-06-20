@@ -9,7 +9,6 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
-steps:
 - script: |
   dotnet restore
   dotnet build ./SeedWebApi/SeedWebApi/ --configuration $(buildConfiguration)
