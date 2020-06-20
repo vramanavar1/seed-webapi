@@ -17,7 +17,7 @@ steps:
     containerRegistry: 'vramanavarDockerRegistry'
     repository: 'vramanavar/seedwebapi'
     command: 'buildAndPush'
-    Dockerfile: '**/Dockerfile'
+    Dockerfile: 'SeedWebApi/SeedWebApi/Dockerfile'
     tags: |
       latest
 - task: KubernetesManifest@0
