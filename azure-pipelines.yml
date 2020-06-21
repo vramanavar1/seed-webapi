@@ -11,7 +11,7 @@ trigger:
 variables:
   dockerRegistryServiceConnection: 'vramanavarDockerRegistry'
   dockerfilePath: 'SeedWebApi/Dockerfile'
-  imageRepository: 'vramanavar'
+  imageRepository: 'vramanavar/seedwebapi'
 
 pool:
   vmImage: 'ubuntu-16.04'
