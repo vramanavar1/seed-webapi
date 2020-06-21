@@ -32,4 +32,4 @@ steps:
     action: 'deploy'
     kubernetesServiceConnection: 'kubeConnection'
     namespace: 'default'
-    manifests: 'kube-deploy.yml'
+    manifests: 'SeedWebApi/kube-deploy.yml'
