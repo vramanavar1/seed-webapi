@@ -21,7 +21,7 @@ namespace PersistenceLayer.Repositories
         }
         public async Task<IEnumerable<T>> GetAll()
         {
-            return entities.AsEnumerable();
+            return await entities.ToListAsync();
         }
         public async Task<T> GetById(int id)
         {

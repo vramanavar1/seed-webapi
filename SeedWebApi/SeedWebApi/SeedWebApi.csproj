@@ -16,10 +16,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\PersistenceLayer.Contracts\PersistenceLayer.Contracts.csproj" />
-    <ProjectReference Include="..\..\PersistenceLayer\PersistenceLayer.csproj" />
-    <ProjectReference Include="..\..\ServiceLayer.Contracts\ServiceLayer.Contracts.csproj" />
-    <ProjectReference Include="..\..\ServiceLayer\ServiceLayer.csproj" />
+    <ProjectReference Include="..\PersistenceLayer.Contracts\PersistenceLayer.Contracts.csproj" />
+    <ProjectReference Include="..\PersistenceLayer\PersistenceLayer.csproj" />
+    <ProjectReference Include="..\ServiceLayer.Contracts\ServiceLayer.Contracts.csproj" />
+    <ProjectReference Include="..\ServiceLayer\ServiceLayer.csproj" />
     <ProjectReference Include="..\CommonLayer\CommonLayer.csproj" />
   </ItemGroup>
 
