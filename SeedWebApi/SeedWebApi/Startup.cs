@@ -35,7 +35,7 @@ namespace SeedWebApi
         public void ConfigureServices(IServiceCollection services)
         {
             var connectionString = Configuration.GetConnectionString("DefaultConnection");
-            services.AddDbContext<DatabaseContext>(options => options.UseSqlite(connectionString), ServiceLifetime.Scoped);
+            services.AddDbContext<DatabaseContext>(options => options.UseInMemoryDatabase(connectionString), ServiceLifetime.Scoped);
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<IDiamondService, DiamondService>();
 

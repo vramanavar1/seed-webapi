@@ -9,7 +9,7 @@ namespace PersistenceLayer.Repositories
         public virtual DbSet<DatabaseDiamond> diamonds { get; set; }
         public virtual DbSet<DatabaseRetailer> retailers { get; set; }
 
-        public DatabaseContext(string connectionString) : this(new DbContextOptionsBuilder<DatabaseContext>().UseSqlite(connectionString).Options)
+        public DatabaseContext(string connectionString) : this(new DbContextOptionsBuilder<DatabaseContext>().UseInMemoryDatabase(connectionString).Options)
         {
         }
 
