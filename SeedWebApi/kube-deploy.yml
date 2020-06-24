@@ -12,8 +12,10 @@ spec:
       containers:
         - name: seedwebapi
           image: vramanavar/seedwebapi:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 80
+        restartPolicy: Always
 ---
 apiVersion: v1
 kind: Service
