@@ -28,6 +28,7 @@ steps:
       latest
       $(Build.BuildNumber)
 - task: replacetokens@3
+  displayName: Replace tokens from Kube Deployment Manifest file
   inputs:
     rootDirectory: 'SeedWebApi'
     targetFiles: '**/kube-deploy.yml'
