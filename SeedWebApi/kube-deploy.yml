@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
         - name: seedwebapi
-          image: vramanavar/seedwebapi:latest
+          image: vramanavar/seedwebapi:<<BUILD_NUMBER>>
           imagePullPolicy: Always
           ports:
             - containerPort: 80
