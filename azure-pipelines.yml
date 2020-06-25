@@ -26,6 +26,20 @@ steps:
     Dockerfile: $(dockerfilePath)
     tags: |
       latest
+      $(Build.BuildNumber)
+- task: replacetokens@3
+  inputs:
+    rootDirectory: 'SeedWebApi'
+    targetFiles: '**/kube-deploy.yml'
+    encoding: 'auto'
+    writeBOM: true
+    actionOnMissing: 'warn'
+    keepToken: false
+    tokenPrefix: '<<'
+    tokenSuffix: '>>'
+    useLegacyPattern: false
+    emptyValue: '$(Build.BuildNumber)'
+    enableTelemetry: true
 - task: KubernetesManifest@0
   displayName: Apply Kubernetes Deployment Manifest
   inputs:
