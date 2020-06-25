@@ -14,7 +14,7 @@ namespace SeedWebApi.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
-            return new string[] { "Apple", "Banana", "Orange", "Avocado" };
+            return new string[] { "Apple", "Banana", "Orange", "Avocado", "Custard Apple", "Pomegranate" };
         }
 
         // GET api/values/5
