@@ -38,7 +38,7 @@ steps:
     tokenPrefix: '<<'
     tokenSuffix: '>>'
     useLegacyPattern: false
-    emptyValue: '$(Build.BuildNumber)'
+    emptyValue: 'latest'
     enableTelemetry: true
 - task: KubernetesManifest@0
   displayName: Apply Kubernetes Deployment Manifest
