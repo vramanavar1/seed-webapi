@@ -36,7 +36,7 @@ This is very basic API template api project; which gets hosted in Kubernetes Clu
   
   
 # Release Azure Resources  (To avoid unnecessary billing)
-    # Finally, when you are done working with Kubernetes command lets; you can delete the resource group as below
+    # Finally, when you are done working with Kubernetes commandlets; you can delete the resource group as below
     
     Remove-AzResourceGroup -Name $resourceGroupName
   
