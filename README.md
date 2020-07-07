@@ -36,12 +36,25 @@ This is very basic API template api project; which gets hosted in Kubernetes Clu
 # Step 2: Create Azure DevOps Pipeline using azure-pipelines.yml defined in the project
     
     AzureDevOps pipeline azure-pipelines.yml defined in this project uses following three service connections
+    
     a) vramanavar1 : Connection to GitHub Code Repository
     b) vramanavarDockerRegistry: Connection to Docker Hub Registry
     c) kubeConnection: Connection to Kubernetes Cluster
     
     Pipeline is structured as below
-
+    
+    1. Uses "ubuntu-16.04" Hosted-Agent 
+    
+    2. Points to origin "master" of vramanavar1/seed-webapi project
+    
+    3. Docker@2: This step uses multi-stage build Dockerfile. The image is built and pushed to DockerHub Registry via the service connection
+    
+    4. replacetokens@3: This is extension added to AzureDevOps Organization. It is used to replace the tag of the Docker Image present in kubernetes 
+                        manifest yml (SeedWebApi/kube-deploy.yml) file. Build Number is used to tag to newly created docker images.
+    
+    5. KubernetesManifest@0: This steps connects to Kubernetes via the "kubeConnection" service connection. By now SeedWebApi/kube-deploy.yml would be pointing to
+                        newly created Docker Image (Essentially, by Docker Image tag getting replaced by token replacement task in previous step)
+    
 # Release Azure Resources  (To avoid unnecessary billing)
     # Finally, when you are done working with Kubernetes commandlets; you can delete the resource group as below
     
