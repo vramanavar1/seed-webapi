@@ -10,8 +10,7 @@ This is very basic API template api project; which gets hosted in Kubernetes Clu
   
   d) Finally, the Kubernetes manifest yaml file is applied to the cluster
   
-  
-  # Kubernetes Cluster Creation Script
+  # Step 1: Kubernetes Cluster Creation Script
   
     $subscriptionId = (Get-AzSubscription -SubscriptionName Polyglot-Development-PayAsYouGo).Id
     $resourceGroupName = "pgt-seedwebapi-aue-rg"
@@ -34,7 +33,15 @@ This is very basic API template api project; which gets hosted in Kubernetes Clu
     # Make sure the Kubernetes Cluster is indeed created and you are getting the desired number of nodes
     kubectl get nodes
   
-  
+# Step 2: Azure DevOps Pipeline
+    
+    AzureDevOps pipeline azure-pipelines.yml defined in this project uses following three service connections
+    a) vramanavar1 : Connection to GitHub Code Repository
+    b) vramanavarDockerRegistry: Connection to Docker Hub Registry
+    c) kubeConnection: Connection to Kubernetes Cluster
+    
+    Pipeline is structured as below
+
 # Release Azure Resources  (To avoid unnecessary billing)
     # Finally, when you are done working with Kubernetes commandlets; you can delete the resource group as below
     
