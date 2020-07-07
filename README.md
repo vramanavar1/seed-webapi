@@ -75,8 +75,9 @@ This is very basic API template project; which gets hosted in Kubernetes Cluster
     
 # Step 5: Demonstrate CI/CD - Make some code change 
     
-    Perhaps, add some more values to api/values endpoint and push the code to the repo. This action should automatically trigger the build pipeline. Once the build
-    succeeds. Hit the http://<<External-IP>>/api/values endpoint again; response should return new values (200 OK Response)
+    Perhaps, add some more values to api/values endpoint and push the code to the repo. 
+    This action should automatically trigger the build pipeline. 
+    Once the build succeeds. Hit the http://<<External-IP>>/api/values endpoint again; response should return new values (200 OK Response)
 
 # Step 6: Release Azure Resources  (To avoid unnecessary billing)
 
