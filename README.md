@@ -1,6 +1,6 @@
 # Kubernetes CI/CD with .NET Core Seed Web API - Template Project
 
-This is very basic API template api project; which gets hosted in Kubernetes Cluster
+This is very basic API template project; which gets hosted in Kubernetes Cluster
 
   a) As first step it gets latest version from the master
   
@@ -12,6 +12,8 @@ This is very basic API template api project; which gets hosted in Kubernetes Clu
   
   # Step 1: Create Kubernetes Cluster - Using following script
   
+    NOTE: For simplicity; the below resource names reflect as they are in my environment; please rename as per your environment
+    
     $subscriptionId = (Get-AzSubscription -SubscriptionName Polyglot-Development-PayAsYouGo).Id
     $resourceGroupName = "pgt-seedwebapi-aue-rg"
     $aksClusterName = "kube-seedwebapi-cluster"
@@ -41,6 +43,9 @@ This is very basic API template api project; which gets hosted in Kubernetes Clu
     b) vramanavarDockerRegistry: Connection to Docker Hub Registry
     c) kubeConnection: Connection to Kubernetes Cluster
     
+    NOTE: Point the above three connections to your sources (Code Repository, Docker Registry and Kubernetes Cluster). If you rename the service connection; 
+          then have the same names used in azure-pipelines.yml file.
+    
     Pipeline is structured as below
     
     1. Uses "ubuntu-16.04" Hosted-Agent 
@@ -55,7 +60,26 @@ This is very basic API template api project; which gets hosted in Kubernetes Clu
     5. KubernetesManifest@0: This steps connects to Kubernetes via the "kubeConnection" service connection. By now SeedWebApi/kube-deploy.yml would be pointing to
                         newly created Docker Image (Essentially, by Docker Image tag getting replaced by token replacement task in previous step)
     
-# Release Azure Resources  (To avoid unnecessary billing)
+
+# Step 3: Trigger the pipeline
+    
+    This kicks-off the build job and deploys the code to Kubernetes Cluster
+    
+# Step 4: Get the LoadBalancer Public IP
+    
+    Use the following commandlet to fetch the hosted public ip
+    
+    kubectl get svc label-seedwebapi -w 
+    
+    NOTE: Use "External-IP" column's IP from the output of previous commandlet. Use Postman and call http://<<External-IP>>/api/values. This should return 200 OK response
+    
+# Step 5: Demonstrate CI/CD - Make some code change 
+    
+    Perhaps, add some more values to api/values endpoint and push the code to the repo. This action should automatically trigger the build pipeline. Once the build
+    succeeds. Hit the http://<<External-IP>>/api/values endpoint again; response should return new values (200 OK Response)
+
+# Step 6: Release Azure Resources  (To avoid unnecessary billing)
+
     # Finally, when you are done working with Kubernetes commandlets; you can delete the resource group as below
     
     Remove-AzResourceGroup -Name $resourceGroupName
