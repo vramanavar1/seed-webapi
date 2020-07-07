@@ -10,7 +10,7 @@ This is very basic API template api project; which gets hosted in Kubernetes Clu
   
   d) Finally, the Kubernetes manifest yaml file is applied to the cluster
   
-  # Step 1: Kubernetes Cluster Creation Script
+  # Step 1: Create Kubernetes Cluster - Using following script
   
     $subscriptionId = (Get-AzSubscription -SubscriptionName Polyglot-Development-PayAsYouGo).Id
     $resourceGroupName = "pgt-seedwebapi-aue-rg"
@@ -33,7 +33,7 @@ This is very basic API template api project; which gets hosted in Kubernetes Clu
     # Make sure the Kubernetes Cluster is indeed created and you are getting the desired number of nodes
     kubectl get nodes
   
-# Step 2: Azure DevOps Pipeline
+# Step 2: Create Azure DevOps Pipeline using azure-pipelines.yml defined in the project
     
     AzureDevOps pipeline azure-pipelines.yml defined in this project uses following three service connections
     a) vramanavar1 : Connection to GitHub Code Repository
