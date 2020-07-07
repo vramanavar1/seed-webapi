@@ -1,4 +1,4 @@
-# .NET Core Seed Web API - Template Project
+# CI/CD of .NET Core Seed Web API - Template Project to Kubernetes Cluster
 
 This is very basic API template api project; which gets hosted in Kubernetes Cluster
 
