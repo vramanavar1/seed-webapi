@@ -1,18 +1,22 @@
-# Kubernetes CI/CD with .NET Core Seed Web API - Template Project
+  # Kubernetes CI/CD with .NET Core Seed Web API - Template Project
 
-This is very basic API template project; which gets hosted in Kubernetes Cluster
+    This is very basic API template project; which gets hosted in Kubernetes Cluster. API Project is structured as below
 
-  a) As first step it gets latest version from the master
+    a) SeedWebApi: Host shell; which exposes api endpoints
+    b) ServiceLayer: All the business logic; processed using Domain objects 
+    c) PersistenceLayer: Uses In-Memory database to store data
   
-  b) Builds and Pushes Docker image to Docker Registry; Build Number is used to tag the Docker Image
-  
-  c) As part of build pipeline step; replaces the Container Image number from Kubernetes Manifest yaml file
-  
-  d) Finally, the Kubernetes manifest yaml file is applied to the cluster
+  # Prerequisites
+    
+    a) Installed Azure Powershell CLI (This is required to connect to Azure and execute the scripts from "Step 1" below)
+    b) Docker (Containerizing the application and executing locally)
   
   # Step 1: Create Kubernetes Cluster - Using following script
   
     NOTE: For simplicity; the below resource names reflect as they are in my environment; please rename as per your environment
+    
+    #Note: Logon to your Azure Portal
+    Login-AzAccount
     
     $subscriptionId = (Get-AzSubscription -SubscriptionName Polyglot-Development-PayAsYouGo).Id
     $resourceGroupName = "pgt-seedwebapi-aue-rg"
