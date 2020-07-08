@@ -28,10 +28,6 @@ kind: Service
 metadata:
     name: label-seedwebapi
 spec:
-  securityContext:
-    runAsNonRoot: true
-    readOnlyRootFilesystem: true
-    allowPrivilegeEscalation: false
   ports:
     - name: http-port
       port: 80
