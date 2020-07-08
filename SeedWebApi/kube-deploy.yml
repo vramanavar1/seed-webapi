@@ -15,10 +15,6 @@ spec:
       containers:
         - name: seedwebapi
           image: vramanavar/seedwebapi:<<Build.BuildNumber>>
-          securityContext:
-            runAsNonRoot: true
-            readOnlyRootFilesystem: true
-            allowPrivilegeEscalation: false
           imagePullPolicy: Always
           ports:
             - containerPort: 80
