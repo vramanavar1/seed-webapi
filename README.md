@@ -1,4 +1,4 @@
-  # Kubernetes CI/CD with .NET Core Seed Web API - Template Project
+  # Azure DevOps CI/CD for .NET Core Seed Web API orchestrated on Kubernetes Cluster
 
     This is very basic API template project; which gets hosted in Kubernetes Cluster. API Project is structured as below
 
