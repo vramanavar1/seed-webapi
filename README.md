@@ -67,7 +67,7 @@
 
 # Step 3: Trigger the pipeline
     
-    This kicks-off the build job and deploys the code to Kubernetes Cluster
+    Manually kicks-off the build job for the first time; which deploys the code to Kubernetes Cluster
     
 # Step 4: Get the LoadBalancer Public IP
     
