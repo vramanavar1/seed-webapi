@@ -90,3 +90,10 @@
     Remove-AzResourceGroup -Name $resourceGroupName
   
 # NOTE: Not Covered Kubernetes Security (Security Context and Policy Definitions) 
+     
+    Ideally for production workloads
+    
+    a) Containers should start as Non-Root User
+    b) Previlege escalation should be disabled
+    c) ReadOnly access on the Root FileSystem
+    
