@@ -10,6 +10,7 @@
     
     a) Installed Azure Powershell CLI (This is required to connect to Azure and execute the scripts from "Step 1" below)
     b) Docker (Containerizing the application and executing locally)
+    c) Install "Replace Tokens" Version: 3.6.0 by "Guillaume Rouchon" extension under AzureDevOps
   
   # Step 1: Create Kubernetes Cluster - Using following script
   
