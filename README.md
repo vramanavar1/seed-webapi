@@ -95,6 +95,6 @@
     Ideally for production workloads
     
     a) Containers should start as Non-Root User
-    b) Previlege escalation should be disabled
+    b) Privilege escalation should be disabled
     c) ReadOnly access on the Root FileSystem
     
